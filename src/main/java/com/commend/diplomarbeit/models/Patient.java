@@ -1,36 +1,47 @@
 package com.commend.diplomarbeit.models;
 
 public class Patient {
-    private final long patientid;
-    private final String vn;
-    private final String ln;
-    private final String content;
+    private long patientid;
+    private String fn;
+    private String ln;
+    private String content;
 
-    public Patient(long patientid, String vn, String ln, String content){
-        this.patientid = patientid;
-        this.vn = vn;
-        this.ln = ln;
-        this.content = content;
-    }
+
 
     public long getPatientid(){
         return patientid;
     }
 
-    public String getVn(){
-        return vn;
+    public void setPatientid(long id){
+        this.patientid = patientid;
+    }
+
+    public String getFn(){
+        return fn;
+    }
+
+    public void setFn(String fn){
+        this.fn = fn;
     }
 
     public String getLn(){
         return ln;
     }
 
+    public void setLn(String ln){
+        this.ln = ln;
+    }
+
     public String getContent(){
         return content;
     }
 
+    public void setContent(){
+        this.content = content;
+    }
+
     public String toString(){
-        return patientid + " " + vn + " " + ln + " " + content;
+        return patientid + " " + fn + " " + ln + " " + content;
     }
 
 }

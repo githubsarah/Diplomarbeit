@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RoomController {
 
-    @GetMapping("/room") // Zeigt alle Räume an
-    public Room[] getAllRooms() {
-        Patient p = new Patient(1,"Max","Mustermann","Autist");
+   // @GetMapping("/room") // Zeigt alle Räume an
+   // public Room[] getAllRooms() {
+       // Patient p = new Patient(1,"Max","Mustermann","Autist");
 
-        return new Room[] {new Room(7,2,p)};
-    }
+       // return new Room[] {new Room(7,2,p)};
+   // }
 
 
 }
