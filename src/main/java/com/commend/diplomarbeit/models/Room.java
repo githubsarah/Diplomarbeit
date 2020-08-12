@@ -1,6 +1,7 @@
 package com.commend.diplomarbeit.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity// This tells Hibernate to make a table out of this class
 public class Room {
@@ -10,12 +11,15 @@ public class Room {
      private Integer id;
      private Integer patientid;
 
-     @ManyToOne
-     private Patient patient;
+    /*@OneToMany(mappedBy = "patient")
+    private List<Patient> patients;
+
+     */
 
 
     private long number;
-   // private Patient patient;
+
+
 
 
 

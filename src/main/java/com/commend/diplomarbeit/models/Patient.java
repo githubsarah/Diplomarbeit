@@ -1,15 +1,19 @@
 package com.commend.diplomarbeit.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Patient {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+
+   /* @ManyToOne
+    @JoinColumn(name="room_patientid")
+    private Room room;
+
+    */
 
     private String fn;
     private String ln;

@@ -23,11 +23,9 @@ public class RoomController {
 
 
     @GetMapping("") // Zeigt alle Räume an
-    public List<Room> getAllRooms(int patientid) {
-        List<Room> rooms = new ArrayList<>();
-        roomRepository.getRoomsByPatientId(patientid)
-        .forEach(rooms::add);
-        return rooms;
+    public Iterable<Room> getAllRooms(int patientid) {
+
+        return roomRepository.findAll();
     }
 
     @PostMapping("") // Map ONLY POST Requests
@@ -35,7 +33,6 @@ public class RoomController {
         Room r = new Room();
         r.setNumber(number);
         r.setPatientid(patientid);
-        // r.setPatient(p)
         roomRepository.save(r);
         return "Saved";
     }
@@ -67,7 +64,6 @@ public class RoomController {
     )
     public String deleteRoom(@PathVariable("id") int id ){
         roomRepository.deleteById(id);
-
         return "Deleted";
     }
 

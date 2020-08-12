@@ -63,9 +63,6 @@ public class PatientController {
         return "Deleted";
     }
 
-
-
-
 }
 
 

@@ -6,7 +6,5 @@ import java.util.List;
 
 public interface RoomRepository extends CrudRepository<Room, Integer> {
 
-    public List<Room> getRoomsByPatientId(int patientid);
-
 
 }
