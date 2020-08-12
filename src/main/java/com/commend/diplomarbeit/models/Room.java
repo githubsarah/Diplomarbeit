@@ -1,18 +1,21 @@
 package com.commend.diplomarbeit.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity// This tells Hibernate to make a table out of this class
 public class Room {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+
+     @Id
+     @GeneratedValue(strategy= GenerationType.AUTO)
+     private Integer id;
+     private Integer patientid;
+
+     @ManyToOne
+     private Patient patient;
+
 
     private long number;
-    private Patient patient;
+   // private Patient patient;
 
 
 
@@ -22,12 +25,20 @@ public class Room {
         this.patient = patient;
     }*/
 
-    public Integer getId(){
-        return id;
+     public Integer getId(){
+         return id;
+     }
+
+     public void setId(Integer id){
+         this.id = id;
+     }
+
+    public Integer getPatientid(){
+        return patientid;
     }
 
-    public void setId(Integer id){
-        this.id = id;
+    public void setPatientid(Integer patientid){
+        this.patientid = patientid;
     }
 
     public long getNumber(){
@@ -38,7 +49,7 @@ public class Room {
         this.number = number;
     }
 
-    public Patient getPatient(){
+   /* public Patient getPatient(){
         return patient;
     }
 
@@ -46,12 +57,12 @@ public class Room {
         this.patient = patient;
     }
 
+    */
+
     @Override
     public String toString() {
         return "Room{" +
                 "number=" + number +
-                ", id=" + id +
-                patient.toString() +
-                '}';
+                ", id=" + patientid;
     }
 }

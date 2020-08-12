@@ -1,19 +1,28 @@
 package com.commend.diplomarbeit.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Patient {
-    private long patientid;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer id;
+
     private String fn;
     private String ln;
     private String content;
 
 
 
-    public long getPatientid(){
-        return patientid;
+    public Integer getId(){
+        return id;
     }
 
-    public void setPatientid(long id){
-        this.patientid = patientid;
+    public void setId(Integer id){
+        this.id = id;
     }
 
     public String getFn(){
@@ -36,12 +45,12 @@ public class Patient {
         return content;
     }
 
-    public void setContent(){
+    public void setContent(String content){
         this.content = content;
     }
 
     public String toString(){
-        return patientid + " " + fn + " " + ln + " " + content;
+        return id + " " + fn + " " + ln + " " + content;
     }
 
 }
