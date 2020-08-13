@@ -29,6 +29,7 @@ public class PatientController {
         return p;
     }
 
+    // Ändern von Patienteninfos
     @PutMapping("/{id}")
     public ResponseEntity<Patient> updatePatient(@PathVariable("id") int id, @RequestBody Patient patient) throws InvalidConfigurationPropertyValueException {
 
@@ -43,6 +44,7 @@ public class PatientController {
 
     }
 
+    //Gibt den Patienten der jeweiligen ID zurück
     @GetMapping("/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable("id") int id) throws InvalidConfigurationPropertyValueException {
         Patient p = patientRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id",id, "Not found"));
