@@ -1,12 +1,11 @@
-package com.commend.diplomarbeit.controllers;
+package com.commend.diplomarbeit.patient;
 
-import com.commend.diplomarbeit.models.Patient;
-import com.commend.diplomarbeit.models.PatientRepository;
-import com.commend.diplomarbeit.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.source.InvalidConfigurationPropertyValueException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -18,16 +17,14 @@ public class PatientController {
     private PatientRepository patientRepository;
 
     @GetMapping("") // Zeigt alle Räume an
-    public Iterable<Patient> getAllPatients() {
+    public List<Patient> getAllPatients() {
         return patientRepository.findAll();
     }
 
     @PostMapping("") // Map ONLY POST Requests
-    public Patient createPatient(@RequestParam String fn, @RequestParam String ln, @RequestParam String content){
+    public Patient createPatient(@RequestBody Patient patient){
         Patient p = new Patient();
-        p.setFn(fn);
-        p.setLn(ln);
-        p.setContent(content);
+
         patientRepository.save(p);
         return p;
     }
@@ -37,9 +34,9 @@ public class PatientController {
 
         Patient p = patientRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
 
-        p.setFn(patient.getFn());
-        p.setLn(patient.getLn());
-        p.setContent(patient.getContent());
+       // p.setFn(patient.getFn());
+        //p.setLn(patient.getLn());
+        //p.setContent(patient.getContent());
 
         final Patient updatePatient= patientRepository.save(p);
         return ResponseEntity.ok(updatePatient);
@@ -47,10 +44,11 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> getRoomById(@PathVariable("id") int id) throws InvalidConfigurationPropertyValueException {
-        Patient p = patientRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
-
+    public ResponseEntity<Patient> getPatientById(@PathVariable("id") int id) throws InvalidConfigurationPropertyValueException {
+        Patient p = patientRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id",id, "Not found"));
         return ResponseEntity.ok().body(p);
+
+
     }
 
     @RequestMapping(
@@ -62,6 +60,12 @@ public class PatientController {
 
         return "Deleted";
     }
+
+    @RequestMapping("/room/{room_id}")
+    public Patient getRoomByPatientId(@PathVariable("room_id") int id) {
+        return patientRepository.findByRoomId(id);
+    }
+
 
 }
 
