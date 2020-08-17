@@ -25,21 +25,25 @@ public class RoomController {
     @PostMapping("") // Map ONLY POST Requests
     public String createRoom(@RequestBody Room room) {
         roomRepository.save(room);
+
+
         return "Saved";
     }
 
+    // Mit diesem PutMapping können Änderungen an den Raumdaten vorgenommen werden
     @PutMapping("/{id}")
     public ResponseEntity<Room> updateRoom(@PathVariable("id") int id, @RequestBody Room room) throws InvalidConfigurationPropertyValueException {
 
         Room r = roomRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
 
-//        r.setNumber(room.getNumber());
-//        r.setPatientid(room.getPatientid());
+        r.setNumber(room.getNumber());
+        r.setMaxBelegung(room.getMaxBelegung());
 
         final Room updateRoom = roomRepository.save(r);
         return ResponseEntity.ok(updateRoom);
 
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Room> getRoomById(@PathVariable("id") int id) throws InvalidConfigurationPropertyValueException {
@@ -48,21 +52,44 @@ public class RoomController {
         return ResponseEntity.ok().body(r);
     }
 
-
+    // Hier werden die Daten des Raumes mittels Zugriff per Raum ID gelöscht
     @DeleteMapping("/{id}")
     public String deleteRoom(@PathVariable("id") int id) {
         roomRepository.deleteById(id);
         return "Deleted";
     }
 
+    // Funktioniert nicht
     /*
     @RequestMapping("/patient/{patient_id}")
-    public Room getRoomByPatientId(@PathVariable("patient_id") int id) {
+    public Room getPatientByRoomId(@PathVariable("patient_id") int id) {
         return roomRepository.findByPatientId(id);
     }
+
+     */
+
+   /* @PostMapping("/{id}/patient")
+    public ResponseEntity<Room> updateRoom(@PathVariable("id") int id, @RequestBody Room room) throws InvalidConfigurationPropertyValueException {
+
+        Room r = roomRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
+
+        if(r.maxBelegung)
+
+        r.setNumber(room.getNumber());
+        r.setMaxBelegung(room.getMaxBelegung());
+
+        final Room updateRoom = roomRepository.save(r);
+        return ResponseEntity.ok(updateRoom);
+
+    }
+
+    @DeleteMapping("/{room_id}/patient")
+    public String deletePatientByRoomId(@PathVariable("room_id") int id) {
+        roomRepository.deleteById(id);
+        return "Deleted";
+    }
+
     */
-
-
 
 
 }

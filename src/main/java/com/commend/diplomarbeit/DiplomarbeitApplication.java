@@ -2,11 +2,12 @@ package com.commend.diplomarbeit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class DiplomarbeitApplication{
+public class DiplomarbeitApplication {
 
-   // private static final Logger log = LoggerFactory.getLogger(DiplomarbeitApplication.class);
+    // private static final Logger log = LoggerFactory.getLogger(DiplomarbeitApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(DiplomarbeitApplication.class, args);
@@ -26,4 +27,6 @@ public class DiplomarbeitApplication{
 
         jdbcTemplate.batchUpdate("INSERT INTO rooms(number, id, patientid, fn, ln, content) VALUES (?,?,?,?,?,?)");
     }*/
+
+
 }

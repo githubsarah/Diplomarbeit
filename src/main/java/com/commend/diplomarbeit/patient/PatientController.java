@@ -22,11 +22,10 @@ public class PatientController {
     }
 
     @PostMapping("") // Map ONLY POST Requests
-    public Patient createPatient(@RequestBody Patient patient){
-        Patient p = new Patient();
+    public Patient createPatient(@RequestBody Patient patient) {
 
-        patientRepository.save(p);
-        return p;
+
+        return patientRepository.save(patient);
     }
 
     // Ändern von Patienteninfos
@@ -35,11 +34,15 @@ public class PatientController {
 
         Patient p = patientRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
 
-       // p.setFn(patient.getFn());
-        //p.setLn(patient.getLn());
-        //p.setContent(patient.getContent());
+        p.setFn(patient.getFn());
+        p.setLn(patient.getLn());
+        p.setContent(patient.getContent());
+        p.setMedikamente(patient.getMedikamente());
+        p.setTherapiezeit(patient.getTherapiezeit());
+        p.setHauptBetreuer(patient.getHauptBetreuer());
 
-        final Patient updatePatient= patientRepository.save(p);
+
+        final Patient updatePatient = patientRepository.save(p);
         return ResponseEntity.ok(updatePatient);
 
     }
@@ -47,26 +50,34 @@ public class PatientController {
     //Gibt den Patienten der jeweiligen ID zurück
     @GetMapping("/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable("id") int id) throws InvalidConfigurationPropertyValueException {
-        Patient p = patientRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id",id, "Not found"));
+        Patient p = patientRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
         return ResponseEntity.ok().body(p);
 
 
     }
 
-    @RequestMapping(
-            method = RequestMethod.DELETE,
-            value = "/{id}"
-    )
-    public String deletePatient(@PathVariable("id") int id){
+    // Mit diesem Befehl kann man die Daten eines Patienten über einen ID-Zugriff ganz einfach löschen
+    @DeleteMapping("/{id}")
+    public String deletePatient(@PathVariable("id") int id) {
         patientRepository.deleteById(id);
 
         return "Deleted";
     }
 
-    @RequestMapping("/room/{room_id}")
+    // Mit diesem RequestMapping können die Daten der Räume der jeweiligen Patienten per id abgerufen werden
+    @PostMapping("/room/{room_id}")
     public Patient getRoomByPatientId(@PathVariable("room_id") int id) {
         return patientRepository.findByRoomId(id);
     }
+
+
+    @DeleteMapping("/{id}/room")
+
+    public String deleteRoomByPatientId(@PathVariable("id") int id) {
+        patientRepository.deleteById(id);
+        return "Deleted";
+    }
+
 
 
 }
