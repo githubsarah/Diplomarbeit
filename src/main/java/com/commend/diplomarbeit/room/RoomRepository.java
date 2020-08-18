@@ -8,6 +8,7 @@ public interface RoomRepository extends CrudRepository<Room, Integer> {
 
     Room findByPatientId(int id);
 
+
     @Override
     List<Room> findAll();
 

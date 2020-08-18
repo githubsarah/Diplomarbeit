@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/patient") // This means URL's start with /room (after Application path)
 public class PatientController {
@@ -23,8 +22,6 @@ public class PatientController {
 
     @PostMapping("") // Map ONLY POST Requests
     public Patient createPatient(@RequestBody Patient patient) {
-
-
         return patientRepository.save(patient);
     }
 
@@ -37,10 +34,9 @@ public class PatientController {
         p.setFn(patient.getFn());
         p.setLn(patient.getLn());
         p.setContent(patient.getContent());
-        p.setMedikamente(patient.getMedikamente());
-        p.setTherapiezeit(patient.getTherapiezeit());
-        p.setHauptBetreuer(patient.getHauptBetreuer());
-
+        p.setDrug(patient.getDrug());
+        p.setTherapyTime(patient.getTherapyTime());
+        p.setMainCaregiver(patient.getMainCaregiver());
 
         final Patient updatePatient = patientRepository.save(p);
         return ResponseEntity.ok(updatePatient);
@@ -60,21 +56,19 @@ public class PatientController {
     @DeleteMapping("/{id}")
     public String deletePatient(@PathVariable("id") int id) {
         patientRepository.deleteById(id);
-
         return "Deleted";
     }
 
     // Mit diesem RequestMapping können die Daten der Räume der jeweiligen Patienten per id abgerufen werden
-    @PostMapping("/room/{room_id}")
-    public Patient getRoomByPatientId(@PathVariable("room_id") int id) {
+    @GetMapping("/room/{room_id}")
+    public Patient getPatientByRoomId(@PathVariable("room_id") int id) {
         return patientRepository.findByRoomId(id);
     }
 
 
-    @DeleteMapping("/{id}/room")
-
-    public String deleteRoomByPatientId(@PathVariable("id") int id) {
-        patientRepository.deleteById(id);
+    @DeleteMapping("/{room_id}/room")
+    public String deletePatientByRoomId(@PathVariable("room_id") int id) {
+        patientRepository.deleteByRoomId(id);
         return "Deleted";
     }
 

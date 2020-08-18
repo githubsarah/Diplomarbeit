@@ -18,16 +18,12 @@ public class RoomController {
 
     @GetMapping("") // Zeigt alle Räume an
     public List<Room> getAllRooms() {
-
         return roomRepository.findAll();
     }
 
     @PostMapping("") // Map ONLY POST Requests
-    public String createRoom(@RequestBody Room room) {
-        roomRepository.save(room);
-
-
-        return "Saved";
+    public Room createRoom(@RequestBody Room room) {
+        return roomRepository.save(room);
     }
 
     // Mit diesem PutMapping können Änderungen an den Raumdaten vorgenommen werden
@@ -37,7 +33,7 @@ public class RoomController {
         Room r = roomRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
 
         r.setNumber(room.getNumber());
-        r.setMaxBelegung(room.getMaxBelegung());
+        r.setMaxOccupancy(room.getMaxOccupancy());
 
         final Room updateRoom = roomRepository.save(r);
         return ResponseEntity.ok(updateRoom);
@@ -59,37 +55,40 @@ public class RoomController {
         return "Deleted";
     }
 
-    // Funktioniert nicht
+    // Funktioniert nichts
 
-    @RequestMapping("/patient/{patient_id}")
-    public Room getPatientByRoomId(@PathVariable("patient_id") int id) {
+    @GetMapping("/patient/{patient_id}")
+    public Room getRoomByPatientId(@PathVariable("patient_id") int id) {
         return roomRepository.findByPatientId(id);
     }
 
 
 
-   /* @PostMapping("/{id}/patient")
+   /*@PostMapping("/{id}/patient")
     public ResponseEntity<Room> updateRoom(@PathVariable("id") int id, @RequestBody Room room) throws InvalidConfigurationPropertyValueException {
 
         Room r = roomRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
 
-        if(r.maxBelegung)
+        if(r.maxOccupancy())
 
         r.setNumber(room.getNumber());
-        r.setMaxBelegung(room.getMaxBelegung());
+        r.setMaxOccupancy(room.getMaxOccupancy());
+        patient.createPatient();
 
         final Room updateRoom = roomRepository.save(r);
         return ResponseEntity.ok(updateRoom);
 
-    }
+    } */
 
-    @DeleteMapping("/{room_id}/patient")
-    public String deletePatientByRoomId(@PathVariable("room_id") int id) {
+    @DeleteMapping("/{id}/patient")
+    public String deletePatientByRoomId(@PathVariable("id") int id) {
         roomRepository.deleteById(id);
         return "Deleted";
     }
 
-    */
+
+
+
 
 
 }

@@ -23,24 +23,6 @@ public class Room {
     @OneToMany(mappedBy = "room")
     private List<Patient> patient;
 
-    //  private int patientid;
     private long number;
-    private long maxBelegung;
-
-  /*  public long getNumber() {
-        return number;
-    }
-    public void setNumber(long number) {
-        this.number = number;
-    }
-
-    public long getMaxBelegung() {
-        return maxBelegung;
-    }
-    public void setMaxBelegung(long maxBelegung) {
-        this.maxBelegung = maxBelegung;
-    }
-
-   */
-
+    private long maxOccupancy;
 }
