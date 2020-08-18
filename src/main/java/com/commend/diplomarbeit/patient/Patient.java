@@ -20,7 +20,7 @@ public class Patient {
     @GeneratedValue
     private Integer id;
 
-    @JsonManagedReference
+//    @JsonManagedReference
     @ManyToOne
     private Room room;
 

@@ -60,13 +60,13 @@ public class RoomController {
     }
 
     // Funktioniert nicht
-    /*
+
     @RequestMapping("/patient/{patient_id}")
     public Room getPatientByRoomId(@PathVariable("patient_id") int id) {
         return roomRepository.findByPatientId(id);
     }
 
-     */
+
 
    /* @PostMapping("/{id}/patient")
     public ResponseEntity<Room> updateRoom(@PathVariable("id") int id, @RequestBody Room room) throws InvalidConfigurationPropertyValueException {

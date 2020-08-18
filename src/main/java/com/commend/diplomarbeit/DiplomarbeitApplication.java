@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+ //@SwaggerEnable2
 public class DiplomarbeitApplication {
 
     // private static final Logger log = LoggerFactory.getLogger(DiplomarbeitApplication.class);
@@ -27,6 +28,5 @@ public class DiplomarbeitApplication {
 
         jdbcTemplate.batchUpdate("INSERT INTO rooms(number, id, patientid, fn, ln, content) VALUES (?,?,?,?,?,?)");
     }*/
-
 
 }
