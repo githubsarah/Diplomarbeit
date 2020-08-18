@@ -50,5 +50,4 @@ public class RoomController {
         roomRepository.deleteById(id);
         return ResponseEntity.noContent();
     }
-
 }
