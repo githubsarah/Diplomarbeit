@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/room") // This means URL's start with /room (after Application path)
+@RequestMapping("room") // This means URL's start with /room (after Application path)
 public class RoomController {
 
     // This means to get the bean called userRepository
