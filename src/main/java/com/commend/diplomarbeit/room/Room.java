@@ -19,9 +19,8 @@ public class Room {
     @GeneratedValue
     private Integer id;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "room")
-    private List<Patient> patient;
+    @OneToMany
+    private List<Patient> patients;
 
     private long number;
     private long maxOccupancy;

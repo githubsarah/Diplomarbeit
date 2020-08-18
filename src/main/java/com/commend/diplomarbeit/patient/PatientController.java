@@ -66,11 +66,7 @@ public class PatientController {
     }
 
 
-    @DeleteMapping("/{room_id}/room")
-    public String deletePatientByRoomId(@PathVariable("room_id") int id) {
-        patientRepository.deleteByRoomId(id);
-        return "Deleted";
-    }
+
 
 
 
