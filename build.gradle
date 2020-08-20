@@ -1,9 +1,9 @@
- plugins {
-     id 'org.springframework.boot' version '2.3.2.RELEASE'
-     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-     id 'org.hidetake.swagger.generator' version '1.4.0'
-     id 'java'
- }
+plugins {
+    id 'org.springframework.boot' version '2.3.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'org.hidetake.swagger.generator' version '1.4.0'
+    id 'java'
+}
 
 group = 'com.commend'
 version = '0.0.1-SNAPSHOT'
@@ -16,7 +16,6 @@ repositories {
 dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     // implementation "io.springfox:springfox-boot-starter:3.0.0"
@@ -26,15 +25,14 @@ dependencies {
     //Mit der Datenbank von MySQL eine Verbindung aufbauen
     runtimeOnly 'mysql:mysql-connector-java'
 
-
     // Mit den zwei nachstehenden Befehlen können der @Data und die Args Befehle realisiert werden
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
-     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
 }
 
 test {
