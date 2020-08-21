@@ -29,7 +29,6 @@ public class PatientController {
     //Gibt den Patienten der jeweiligen ID zurück
     @GetMapping("{id}")
     public Patient findById(@PathVariable int id) throws InvalidConfigurationPropertyValueException {
-
         return patientRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
     }
 
@@ -63,5 +62,4 @@ public class PatientController {
         return ResponseEntity.noContent();
     }
 }
-
 
