@@ -17,55 +17,58 @@ public class PatientController {
     private PatientRepository patientRepository;
 
     /**
+     * Map ONLY POST Requests
      *
      * @param patient
      * @return
      */
-    @PostMapping // Map ONLY POST Requests
+    @PostMapping
     public Patient create(@RequestBody Patient patient) {
         return patientRepository.save(patient);
     }
 
     /**
+     * Zeigt alle Räume an
      *
      * @return
      */
-    @GetMapping // Zeigt alle Räume an
+    @GetMapping
     public List<Patient> findAll() {
         return patientRepository.findAll();
     }
 
     /**
+     * Gibt den Patienten der jeweiligen ID zurück
      *
      * @param id
      * @return
      * @throws InvalidConfigurationPropertyValueException
      */
-    //Gibt den Patienten der jeweiligen ID zurück
+
     @GetMapping("{id}")
     public Patient findById(@PathVariable int id) throws InvalidConfigurationPropertyValueException {
         return patientRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
     }
 
     /**
+     * Mit diesem RequestMapping können die Daten der Räume der jeweiligen Patienten per id abgerufen werden
      *
      * @param id
      * @return
      */
-    // Mit diesem RequestMapping können die Daten der Räume der jeweiligen Patienten per id abgerufen werden
     @GetMapping("room/{room_id}")
     public Patient getPatientByRoomId(@PathVariable("room_id") int id) {
         return patientRepository.findByRoomId(id);
     }
 
     /**
+     * Ändern von Patienteninfos
      *
      * @param id
      * @param patient
      * @return
      * @throws InvalidConfigurationPropertyValueException
      */
-    // Ändern von Patienteninfos
     @PutMapping("{id}")
     public Patient update(@PathVariable int id, @RequestBody Patient patient) throws InvalidConfigurationPropertyValueException {
 
@@ -83,11 +86,12 @@ public class PatientController {
     }
 
     /**
+     * Mit diesem Befehl kann man die Daten eines Patienten über einen ID-Zugriff ganz einfach löschen
      *
      * @param id
      * @return
      */
-    // Mit diesem Befehl kann man die Daten eines Patienten über einen ID-Zugriff ganz einfach löschen
+
     @DeleteMapping("{id}")
     public Object deletePatient(@PathVariable int id) {
         patientRepository.deleteById(id);

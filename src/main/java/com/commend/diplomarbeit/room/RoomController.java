@@ -19,20 +19,22 @@ public class RoomController {
     private RoomRepository roomRepository;
 
     /**
+     * Map ONLY POST Requests
      *
      * @param room
      * @return
      */
-    @PostMapping // Map ONLY POST Requests
+    @PostMapping
     public Room create(@RequestBody Room room) {
         return roomRepository.save(room);
     }
 
     /**
+     * Zeigt alle Räume an
      *
      * @return
      */
-    @GetMapping // Zeigt alle Räume an
+    @GetMapping
     public List<Room> findAll() {
         return roomRepository.findAll();
     }
@@ -50,13 +52,13 @@ public class RoomController {
     }
 
     /**
+     * Mit diesem PutMapping können Änderungen an den Raumdaten vorgenommen werden
      *
      * @param id
      * @param room
      * @return
      * @throws InvalidConfigurationPropertyValueException
      */
-    // Mit diesem PutMapping können Änderungen an den Raumdaten vorgenommen werden
     @PutMapping("{id}")
     public Room update(@PathVariable int id, @RequestBody Room room) throws InvalidConfigurationPropertyValueException {
 
@@ -71,11 +73,11 @@ public class RoomController {
 
 
     /**
+     * Hier werden die Daten des Raumes mittels Zugriff per Raum ID gelöscht
      *
      * @param id
      * @return
      */
-    // Hier werden die Daten des Raumes mittels Zugriff per Raum ID gelöscht
     @DeleteMapping("{id}")
     public Object delete(@PathVariable int id) {
         roomRepository.deleteById(id);
