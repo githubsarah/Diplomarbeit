@@ -87,7 +87,7 @@ public class PatientController {
     /**
      * Mit diesem Befehl kann man die Daten eines Patienten über einen ID-Zugriff ganz einfach löschen
      *
-     * @param id Über die id wirdder Patient angegeben den man aus der Datenbank löschen möchte
+     * @param id Über die id wird der Patient angegeben den man aus der Datenbank löschen möchte
      * @return Es wird eine HTTP Statusmeldung ausgegeben
      */
     @DeleteMapping("{id}")
