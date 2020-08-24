@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+
 @RestController
 @RequestMapping("room") // This means URL's start with /room (after Application path)
 public class RoomController {
@@ -16,21 +18,44 @@ public class RoomController {
     @Autowired
     private RoomRepository roomRepository;
 
+    /**
+     *
+     * @param room
+     * @return
+     */
     @PostMapping // Map ONLY POST Requests
     public Room create(@RequestBody Room room) {
         return roomRepository.save(room);
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping // Zeigt alle Räume an
     public List<Room> findAll() {
         return roomRepository.findAll();
     }
 
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws InvalidConfigurationPropertyValueException
+     */
     @GetMapping("{id}")
     public Room findById(@PathVariable int id) throws InvalidConfigurationPropertyValueException {
         return roomRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
     }
 
+    /**
+     *
+     * @param id
+     * @param room
+     * @return
+     * @throws InvalidConfigurationPropertyValueException
+     */
     // Mit diesem PutMapping können Änderungen an den Raumdaten vorgenommen werden
     @PutMapping("{id}")
     public Room update(@PathVariable int id, @RequestBody Room room) throws InvalidConfigurationPropertyValueException {
@@ -44,6 +69,12 @@ public class RoomController {
         return roomRepository.save(r);
     }
 
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     // Hier werden die Daten des Raumes mittels Zugriff per Raum ID gelöscht
     @DeleteMapping("{id}")
     public Object delete(@PathVariable int id) {
