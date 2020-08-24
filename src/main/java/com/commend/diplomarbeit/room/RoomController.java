@@ -21,8 +21,8 @@ public class RoomController {
     /**
      * Map ONLY POST Requests
      *
-     * @param room
-     * @return
+     * @param room Es wird ein Raum Objekt erzeugt
+     * @return Der neu erstellte Raum wird zurückgegeben
      */
     @PostMapping
     public Room create(@RequestBody Room room) {
@@ -32,7 +32,7 @@ public class RoomController {
     /**
      * Zeigt alle Räume an
      *
-     * @return
+     * @return Alle in der Datenbank gespeicherten Räume werden zurückgegeben und angezeigt
      */
     @GetMapping
     public List<Room> findAll() {
@@ -42,9 +42,9 @@ public class RoomController {
 
     /**
      *
-     * @param id
-     * @return
-     * @throws InvalidConfigurationPropertyValueException
+     * @param id Über die eingegebene id wird ein Raum herausgefiltert
+     * @return Der Raum mit der angegebenen id wird zurückgegeben und angezeigt
+     * @throws InvalidConfigurationPropertyValueException This is a configuration property
      */
     @GetMapping("{id}")
     public Room findById(@PathVariable int id) throws InvalidConfigurationPropertyValueException {
@@ -54,10 +54,10 @@ public class RoomController {
     /**
      * Mit diesem PutMapping können Änderungen an den Raumdaten vorgenommen werden
      *
-     * @param id
-     * @param room
-     * @return
-     * @throws InvalidConfigurationPropertyValueException
+     * @param id Über die id wird ein Raum ausgewählt der upgedatet werden soll
+     * @param room Die neuen daten werden über ein JSON Objekt angegeben
+     * @return Der veränderte Raum wird zurückgegeben
+     * @throws InvalidConfigurationPropertyValueException This is a configuration property
      */
     @PutMapping("{id}")
     public Room update(@PathVariable int id, @RequestBody Room room) throws InvalidConfigurationPropertyValueException {
@@ -75,8 +75,8 @@ public class RoomController {
     /**
      * Hier werden die Daten des Raumes mittels Zugriff per Raum ID gelöscht
      *
-     * @param id
-     * @return
+     * @param id Über die id wird ein Raum ausgewählt der gelöscht werden soll
+     * @return Es wird eine Http Statusmeldung ausgegeben
      */
     @DeleteMapping("{id}")
     public Object delete(@PathVariable int id) {

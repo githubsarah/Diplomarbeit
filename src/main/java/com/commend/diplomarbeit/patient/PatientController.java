@@ -19,8 +19,8 @@ public class PatientController {
     /**
      * Map ONLY POST Requests
      *
-     * @param patient
-     * @return
+     * @param patient Es werden die Raumdaten über ein JSON Objekt angegeben
+     * @return Der erstellte Patient wird zurückgegeben und angezeigt
      */
     @PostMapping
     public Patient create(@RequestBody Patient patient) {
@@ -28,9 +28,9 @@ public class PatientController {
     }
 
     /**
-     * Zeigt alle Räume an
+     * Zeigt alle Patienten an
      *
-     * @return
+     * @return Alle in der Datenbank vorhandenen Patienten werden zurückgegeben und angezeigt
      */
     @GetMapping
     public List<Patient> findAll() {
@@ -40,11 +40,10 @@ public class PatientController {
     /**
      * Gibt den Patienten der jeweiligen ID zurück
      *
-     * @param id
-     * @return
-     * @throws InvalidConfigurationPropertyValueException
+     * @param id Über die id wird auf den gesuchten Patienten zugegriffen
+     * @return Die Daten des Patienten werden angezeigt bzw. zurückgegeben
+     * @throws InvalidConfigurationPropertyValueException This is a configuration property
      */
-
     @GetMapping("{id}")
     public Patient findById(@PathVariable int id) throws InvalidConfigurationPropertyValueException {
         return patientRepository.findById(id).orElseThrow(() -> new InvalidConfigurationPropertyValueException("id", id, "Not found"));
@@ -53,8 +52,8 @@ public class PatientController {
     /**
      * Mit diesem RequestMapping können die Daten der Räume der jeweiligen Patienten per id abgerufen werden
      *
-     * @param id
-     * @return
+     * @param id Über die Raum-ID werden wird auf den Patient zugegriffen der in diesem Raum liegt
+     * @return Es werden die Daten des Patienten und seine zugehörigen Rauminformationen zurückgegeben nd angezeigt
      */
     @GetMapping("room/{room_id}")
     public Patient getPatientByRoomId(@PathVariable("room_id") int id) {
@@ -64,9 +63,9 @@ public class PatientController {
     /**
      * Ändern von Patienteninfos
      *
-     * @param id
-     * @param patient
-     * @return
+     * @param id Über die id wird der Patient gesucht dessen Daten man verändern will
+     * @param patient Über ein JSON Objekt werden die neuen Infos angegeben
+     * @return Es werden die veränderten Patientendaten zurückgegeben und angezeigt
      * @throws InvalidConfigurationPropertyValueException
      */
     @PutMapping("{id}")
@@ -88,10 +87,9 @@ public class PatientController {
     /**
      * Mit diesem Befehl kann man die Daten eines Patienten über einen ID-Zugriff ganz einfach löschen
      *
-     * @param id
-     * @return
+     * @param id Über die id wirdder Patient angegeben den man aus der Datenbank löschen möchte
+     * @return Es wird eine HTTP Statusmeldung ausgegeben
      */
-
     @DeleteMapping("{id}")
     public Object deletePatient(@PathVariable int id) {
         patientRepository.deleteById(id);
