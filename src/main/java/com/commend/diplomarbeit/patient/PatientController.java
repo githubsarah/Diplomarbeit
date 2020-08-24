@@ -66,7 +66,7 @@ public class PatientController {
      * @param id Über die id wird der Patient gesucht dessen Daten man verändern will
      * @param patient Über ein JSON Objekt werden die neuen Infos angegeben
      * @return Es werden die veränderten Patientendaten zurückgegeben und angezeigt
-     * @throws InvalidConfigurationPropertyValueException
+     * @throws InvalidConfigurationPropertyValueException This is a configuration property
      */
     @PutMapping("{id}")
     public Patient update(@PathVariable int id, @RequestBody Patient patient) throws InvalidConfigurationPropertyValueException {
