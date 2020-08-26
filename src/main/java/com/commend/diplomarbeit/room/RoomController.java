@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
-
 @RestController
 @RequestMapping("room") // This means URL's start with /room (after Application path)
 public class RoomController {
@@ -39,9 +37,7 @@ public class RoomController {
         return roomRepository.findAll();
     }
 
-
     /**
-     *
      * @param id Über die eingegebene id wird ein Raum herausgefiltert
      * @return Der Raum mit der angegebenen id wird zurückgegeben und angezeigt
      * @throws InvalidConfigurationPropertyValueException This is a configuration property
@@ -70,7 +66,6 @@ public class RoomController {
 
         return roomRepository.save(r);
     }
-
 
     /**
      * Hier werden die Daten des Raumes mittels Zugriff per Raum ID gelöscht

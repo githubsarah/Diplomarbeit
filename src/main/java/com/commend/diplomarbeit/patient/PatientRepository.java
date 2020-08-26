@@ -7,8 +7,8 @@ public interface PatientRepository extends CrudRepository<Patient, Integer> {
 
     /**
      *
-     * @param room_id
-     * @return
+     * @param room_id Mit der Room id wird auf den Patient im Room zugegriffen
+     * @return Es wird das Patientenobjekt zurückgegeben
      */
     Patient findByRoomId(int room_id);
 
